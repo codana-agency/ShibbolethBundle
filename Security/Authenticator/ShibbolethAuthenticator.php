@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
@@ -22,7 +23,7 @@ class ShibbolethAuthenticator extends AbstractAuthenticator implements Authentic
     /**
      * @var Router
      */
-    private $router;
+    private RouterInterface $router;
 
     /**
      * @var string
@@ -54,7 +55,7 @@ class ShibbolethAuthenticator extends AbstractAuthenticator implements Authentic
      * @param array $config
      * @param Router $router
      */
-    public function __construct(array $config, Router $router)
+    public function __construct(array $config, RouterInterface $router)
     {
         $this->router = $router;
         $this->loginPath = $config['login_path'];
